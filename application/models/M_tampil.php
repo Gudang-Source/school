@@ -1,8 +1,11 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') or exit ('No direct script access allowed');
+/**
+ * 
+ */
 class M_tampil extends CI_Model
 {
-    // akun admin
+	// akun admin
     public function get_akun($id)
     {
         return $this->db->query("SELECT * FROM akun_sekolah WHERE id_sek = $id");
@@ -184,4 +187,5 @@ class M_tampil extends CI_Model
             ";
         }
     }
+
 }
