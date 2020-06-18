@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?php echo base_url("assets/vendors/mdi/css/materialdesignicons.min.css") ?>">
     <link rel="stylesheet" href="<?php echo base_url("assets/vendors/css/vendor.bundle.base.css") ?>">
@@ -34,7 +34,9 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="<?php echo base_url("") ?>assets/images/faces/face1.jpg" alt="image">
+                  <?php foreach ($admin->result_array() as $a) { ?>
+                  <img src="<?php echo base_url("assets/images/admin/").$a["foto"] ?>" alt="image">
+                   <?php } ?>
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
@@ -56,3 +58,6 @@
         </div>
       </nav>
       <!-- partial -->
+
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->

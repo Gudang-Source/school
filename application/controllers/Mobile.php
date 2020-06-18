@@ -9,7 +9,6 @@ class Mobile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("M_tampil");
-
 	}
 
 	public function index()

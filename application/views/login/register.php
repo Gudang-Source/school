@@ -2,14 +2,14 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth">
             <div class="row flex-grow">
-                <div class="col-lg-4 mx-auto">
+                <div class="col-lg-6 mx-auto">
                     <div class="auth-form-light text-left p-5">
                         <div class="brand-logo text-center">
                             <img src="<?php echo base_url('assets/images/logo purple2.svg') ?>">
                         </div>
                         <h4>New here?</h4>
                         <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                        <form class="pt-3" action="<?php echo site_url('login/loginact') ?>" method="POST">
+                        <form class="pt-3" action="<?php echo site_url('login/loginact') ?>" enctype="multipart/form-data" method="POST">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-lg" name="id_sek" id="exampleInputUsername1" placeholder="No Sekolah">
                                 <div class="text-danger">
@@ -38,6 +38,21 @@
                                 <input type="password" class="form-control form-control-lg" name="confpass" id="exampleInputPassword1" placeholder="Re-Entry Password">
                                 <div class="text-danger">
                                     <?php echo form_error('confpass'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control form-control-lg" name="no" id="exampleInputEmail1" placeholder="No Telepon">
+                                <div class="text-danger">
+                                    <?php echo form_error('no'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" name="foto" class="custom-file-input" id="inputGroupFile02">
+                                    <label class="form-control form-control-lg custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Foto Admin</label>
+                                </div>
+                                <div class="text-danger">
+                                    <?php echo form_error("foto"); ?>
                                 </div>
                             </div>
                             <div class="mb-4">

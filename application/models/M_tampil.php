@@ -8,12 +8,12 @@ class M_tampil extends CI_Model
 	// akun admin
     public function get_akun($id)
     {
-        return $this->db->query("SELECT * FROM akun_sekolah WHERE id_sek = $id");
+        return $this->db->query("SELECT * FROM admin WHERE id_sek = $id");
     }
 
     public function cek_akun($email, $pass)
     {
-        return $this->db->query("SELECT * FROM akun_sekolah WHERE email = '" . $email . "' AND pass = '" . $pass . "'");
+        return $this->db->query("SELECT * FROM admin WHERE email = '" . $email . "' AND pass = '" . $pass . "'");
     }
 
     public function admin($idsek, $email)
@@ -137,7 +137,7 @@ class M_tampil extends CI_Model
         }
 
         if ($run == true) {
-            redirect(base_url("welcome"));
+            redirect(base_url("admin"));
         } else {
             echo "<script type='text/javascript'>
             window.alert('Email atau password salah');
