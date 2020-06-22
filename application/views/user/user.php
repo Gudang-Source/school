@@ -7,23 +7,37 @@
         </div>
         <h4>Ujian</h4>
         <h6 class="font-weight-light">Masukkan Data diri</h6>
-        <form action="">
+        <form action="<?php echo site_url('mobile/lanjut') ?>" method="POST">
           <div class="form-group">
-            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+            <select class="form-control" name="sekolah">
+              <option value=""> Pilih Sekolah</option>
+              <?php foreach ($sekolah->result_array() as $k): ?>
+              <option value="<?php echo $k["id_sekolah"] ?>"><?php echo $k["nama"] ?></option>
+              <?php endforeach ?>
+            </select>
+            <div class="text-danger">
+                <?= form_error('sekolah') ?>
+            </div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+            <input type="text" name="nis" class="form-control form-control-lg" id="nis" placeholder="NIS">
+            <div class="text-danger">
+                <?= form_error('nis') ?>
+            </div>
           </div>
           	<div class="form-group">
-	          <button type="button" class="form-control btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">Kelas</button>
-	          <div class="dropdown-menu">
-	            <a class="dropdown-item">Go back</a>
-	            <a class="dropdown-item">Delete</a>
-	            <a class="dropdown-item">Swap</a>
-	          </div>
+	          <select class="form-control" name="kelas">
+              <option value=""> Masukkan Kelas</option>
+              <option value="1"> Kelas 1</option>
+              <option value="2"> Kelas 2</option>
+              <option value="3"> Kelas 3</option>
+            </select>
+            <div class="text-danger">
+                <?= form_error('kelas') ?>
+            </div>
 	        </div>
           <div class="mt-3">
-            <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="<?php echo site_url("mobile/lanjut")?>">Lanjut</a>
+            <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Lanjut</button>
           </div>
         </form>
       </div>

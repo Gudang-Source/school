@@ -5,6 +5,13 @@ defined('BASEPATH') or exit ('No direct script access allowed');
  */
 class M_tampil extends CI_Model
 {
+    // akun Sekolah
+    public function getdata($data)
+    {
+        $res = $this->db->get($data);
+        return $res;
+    }
+    
 	// akun admin
     public function get_akun($id)
     {
@@ -27,16 +34,10 @@ class M_tampil extends CI_Model
         return $this->db->query("SELECT * FROM akun_sekolah WHERE id_sek = $idsek AND id = $id");
     }
 
-    // akun Sekolah
-    public function getdata($data)
-    {
-        $res = $this->db->get($data);
-        return $res;
-    }
 
     public function profil($id)
     {
-        return $this->db->query("SELECT * FROM sekolah WHERE id_sek = $id ORDER BY id DESC LIMIT 1");
+        return $this->db->query("SELECT * FROM sekolah WHERE id_sekolah = $id ORDER BY id DESC LIMIT 1");
     }
 
     // mapel
@@ -71,10 +72,11 @@ class M_tampil extends CI_Model
 
 
     // siswa
-    public function siswa($id)
+    public function siswa($id,$nis)
     {
-        $res = $this->db->get_where('siswa', array('id_sek' => $id));
-        return $res;
+        $res = $this->db->get_where('siswa', array('id_sek' => $id, 'nis' => $nis));
+        $r = $res->result_array();
+        return $r;
     }
 
     public function edit_siswa($idsek, $id)
@@ -84,20 +86,23 @@ class M_tampil extends CI_Model
     }
 
     // Soal
-    public function soal($id)
+    public function soal($id,$kelas)
     {
-        return $this->db->query("SELECT * FROM soal WHERE id_sek = $id");
+        return $this->db->get_where('soal', array('id_sek' => $id, 'kelas' => $kelas));
     }
-    public function tampilsoal($idsek, $id)
+    
+
+    public function cekcek($idsek, $id)
     {
-        $res = $this->db->get_where('soal', array('id_sek' => $idsek, 'id_mapelsoal' => $id));
-        return $res;
+        $res = $this->db->get_where('soal', array('id_sek' => $idsek, 'id_mapel' => $id));
+        $r = $res->result_array();
+        return $r;
     }
 
     // Ujian
-    public function ceksoal($sek, $mapel, $siswa)
+    public function ceksoal($sek)
     {
-       $res = $this->db->get_where('ujian', array('id_sek' => $sek, 'id_mapeltukujian' => $mapel, 'id_siswa' => $siswa));
+       $res = $this->db->get_where('ujian', array('id_sek' => $sek));
        return $res;
     }
 
@@ -147,6 +152,47 @@ class M_tampil extends CI_Model
         }
     }
 
+    public function user()
+    {
+        $run = false;
+        $data["sekolah"] = $this->input->post('sekolah');
+        $data["nis"] = $this->input->post('nis');
+        $data["kelas"] = $this->input->post('kelas');
+
+        $siswa = $this->db->get_where("siswa", array('id_sek' => $data["sekolah"] ), array('nis' => $data["nis"]));
+// var_dump($data);
+// die();
+        if ($siswa->num_rows() != 0) {
+            foreach ($siswa->result() as $a) {
+                $sek = $a->id_sek;
+            }
+            foreach ($siswa->result() as $b) {
+                $nis = $b->nis;
+            }
+            if (($sek == $data["sekolah"]) && ($nis == $data["nis"])) {
+                $data_session = array(
+                    'id_sek' => $sek,
+                    'nis' => $nis,
+                    'kelas' => $data["kelas"],
+                    'status' => "cool"
+                );
+
+                $this->session->set_userdata($data_session);
+                $run = true;
+
+        }
+    }
+    if ($run == true) {
+            redirect(base_url("mobile/mapel/" . $sek . '/'.$data["kelas"] .'/' . $nis));
+        } else {
+            echo "<script type='text/javascript'>
+            window.alert('NIS Anda tidak Terdaftar');
+            window.location.href='" . base_url('mobile') .  "';
+            </script>
+            ";
+        }
+    }
+
     public function masuk($idsek, $idmapel)
     {
         $run = false;
@@ -178,14 +224,30 @@ class M_tampil extends CI_Model
         }
 
         if ($run == true) {
-            redirect(base_url("Soal/tampil/" . $idsek . '/' . $idmapel));
+            redirect(base_url("mobile/mapel/" . $idsek . '/' . $idmapel));
         } else {
             echo "<script type='text/javascript'>
             window.alert('NIS atau password salah');
-            window.location.href='" . base_url('masuk/masuk/' . $idsek . '/' . $idmapel) . "';
+            window.location.href='" . base_url('mobile'). "';
             </script>
             ";
         }
     }
 
+    public function masuksoal($idsek, $idmapel,$nis)
+    {
+        
+        $pass = $this->input->post('pass');
+
+        $mapel = $this->db->get_where("soal", array('id_sek' => $idsek, 'id_mapel' => $idmapel, 'pass' => $pass));
+        if ($mapel->num_rows() != 0) {
+            redirect(base_url("soal/soal/" . $idsek . '/' . $idmapel));
+        } else {
+            echo "<script type='text/javascript'>
+            window.alert('NIS atau password salah');
+            window.location.href='" . base_url('mobile/mapel/').$idsek.'/'.$nis. "';
+            </script>
+            ";
+        }
+    }
 }

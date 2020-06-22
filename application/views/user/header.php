@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.svg') ?>" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>

@@ -20,7 +20,7 @@
                 <p class="card-description"> Lengkapi data Admin</p>
               </div>
               <div class="col-sm-4 text-right">
-                <a href="<?php echo base_url('admin/add_admin') ?>"><button type="button" class="btn btn-inverse-primary btn-fw"><i class="mdi mdi-account-multiple-plus"></i> <span> Tambah Mapel</span> </button></a>
+                <a href="<?php echo base_url('admin/add_admin') ?>"><button type="button" class="btn btn-inverse-primary btn-fw"><i class="mdi mdi-account-multiple-plus"></i> <span> Tambah Admin</span> </button></a>
               </div>
             </div>
             <table class="table table-hover">
@@ -45,7 +45,7 @@
                     <td><?php echo $s["email"] ?></td>
                     <td> <?php echo $s["no"] ?> </td>
                     <td class="text-center">
-                        <a href="<?= base_url('welcome/hapus/'. $s["id"]) ?>">
+                        <a href="<?= base_url('c_delet/admin/'. $s["id"]) ?>">
                             <button type="button" class="btn btn-outline-danger btn-sm btn-icon-text">
                                 <i class="mdi mdi-delete-forever btn-icon-prepend"></i> Hapus
                             </button>

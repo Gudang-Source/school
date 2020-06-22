@@ -40,7 +40,7 @@
                   <td class="py-1"><?php echo $s["nis"] ?></td>
                   <td><?php echo $s["nama"] ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url('welcome/hapus/'. $s["id"]) ?>">
+                    <a href="<?= base_url('c_delet/siswa/'. $s["id"]) ?>">
                         <button type="button" class="btn btn-outline-danger btn-sm btn-icon-text">
                             <i class="mdi mdi-delete-forever btn-icon-prepend"></i> Hapus
                         </button>

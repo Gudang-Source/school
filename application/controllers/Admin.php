@@ -27,9 +27,18 @@ class Admin extends CI_Controller
 		echo $kab;
 		$data = [
 			'prov' => $this->M_wilayah->prov(),
-			'kab' =>$this->M_wilayah->kab($kab)
+			'kab' => $this->M_wilayah->kab($kab)
 		];
 		$this->page("content/setting",$data);
+	}
+
+	public function profil()
+	{
+		$id = $this->session->userdata('id_sek');
+		$data = [
+			'profil' => $this->M_tampil->profil($id),
+		];
+		$this->page("content/profil",$data);
 	}
 	
 // admin
@@ -72,18 +81,38 @@ class Admin extends CI_Controller
 // Materi Ujian
 	public function soal()
 	{
-		$this->page("content/soal");
+		$data = [
+			'mapel' => $this->M_tampil->getdata('soal')
+		];
+		$this->page("content/soal",$data);
 	}
 	public function add_soal()
 	{
-		$this->page("content/add_soal");
+		$data = [
+			'mapel' => $this->M_tampil->getdata("mapel")
+		];
+		$this->page("content/add_soal", $data);
 	}
 // End materi ujian
 
 // Hasil ujian
 	function repot()
 	{
-		$this->page("content/repot");
+		$id = $this->session->userdata('id_sek');
+		$data = [
+			'repot' => $this->M_tampil->ceksoal($id)
+		];
+		$this->page("content/repot",$data);
+	}
+
+	public function prin()
+	{
+		$id = $this->session->userdata('id_sek');
+		$data = [
+			'prin' => $this->M_tampil->ceksoal($id),
+			'sekolah' =>$this->M_tampil->profil($id)
+		];
+		$this->load->view('content/print',$data);
 	}
 // End Ujian
 

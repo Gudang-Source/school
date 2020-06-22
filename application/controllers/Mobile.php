@@ -9,8 +9,7 @@ class Mobile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("M_tampil");
-	}
-
+}
 	public function index()
 	{
 		$data = [
@@ -21,10 +20,18 @@ class Mobile extends CI_Controller
 
 	public function lanjut()
 	{
-		$this->page('user/mapel');
+		$this->M_tampil->user();
 	}
 
-	public function login()
+	public function mapel($idsek,$kelas)
+	{
+		$data=[
+			'mapel' => $this->M_tampil->soal($idsek,$kelas)
+		];
+		$this->page('user/mapel',$data);
+	}
+
+	public function login($id)
 	{
 		$this->page('user/login');
 	}

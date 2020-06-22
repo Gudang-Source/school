@@ -7,11 +7,12 @@
         </div>
         <h4 class="text-center">Login Mata Pelajaran</h4>
         <br>
-        <form action="<?= base_url("mobile/soal") ?>" class="text-center">
+        <form action="<?= site_url("soal") ?>" method="POST" class="text-center">
           <div class="form-group">
-            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password Mapel">
+            <input type="hidden" name="mapel" value="<?php echo $this->uri->segment(3) ?>">
+            <input type="password" name="pass" class="form-control" placeholder="Password Kelas">
           </div>
-          <button class="btn btn-primary">Masuk</button>
+          <button type="submit" class="btn btn-primary">Masuk</button>
         </form>
       </div>
     </div>

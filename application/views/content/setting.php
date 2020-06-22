@@ -21,36 +21,7 @@
                   <input type="text" class="form-control" name="nama" id="exampleInputUsername2" placeholder="Nama Sekolah">
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Provinsi</label>
-                <div class="col-sm-9">
-                  <select class="form-control" name="provinsi" id="provinsi">
-                    <option value=""> Pilih Provinsi</option>
-                    <?php foreach ($prov->result_array() as $p): ?>
-                    <option value="<?php echo $p["nama"]; ?>"><?php echo $p["nama"]; ?></option>
-                    <?php endforeach ?>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="exampleInputMobile" class="col-sm-3 col-form-label">Kabupaten</label>
-                <div class="col-sm-9">
-                  <select class="form-control" name="kab" id="kabupaten">
-                    <option value=""> Pilih Kabupaten</option>
-                    <?php foreach ($kab->result_array() as $k): ?>
-                    <option value="<?php echo $k["nama"] ?>"><?php echo $k["nama"] ?></option>
-                    <?php endforeach ?>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Kecamatan</label>
-                <div class="col-sm-9">
-                  <select class="form-control" name="kec" id="kecamatan">
-                    <option value=""> Pilih Kecamatan</option>
-                  </select>
-                </div>
-              </div>
+              
               <div class="form-group row">
                 <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Alamat</label>
                 <div class="col-sm-9">

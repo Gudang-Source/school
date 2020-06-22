@@ -21,59 +21,15 @@
     <script src="<?php echo base_url("assets/js/off-canvas.js") ?>"></script>
     <script src="<?php echo base_url("assets/js/hoverable-collapse.js") ?>"></script>
     <script src="<?php echo base_url("assets/js/misc.js") ?>"></script>
+    <script type="<?php echo base_url("assets/vendors/DataTables/datatables.min.js") ?>"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script type="text/javascript">
-    $(document).ready(function(){
-            $.ajax({
-                type: 'POST',
-                url: "<?= base_url('wilayah') ?>",
-                cache: false, 
-                success: function(msg){
-                  $("#provinsi").html(msg);
-                }
-            });
-
-            $("#provinsi").change(function(){
-            var provinsi = $("#provinsi").val();
-              $.ajax({
-                type: 'POST',
-                  url: "<?= base_url('wilayah/kabupaten') ?>",
-                  data: {provinsi: provinsi},
-                  cache: false,
-                  success: function(msg){
-                    $("#kabupaten").html(msg);
-                  }
-              });
-            });
-
-            $("#kabupaten").change(function(){
-            var kabupaten = $("#kabupaten").val();
-              $.ajax({
-                type: 'POST',
-                  url: "<?= base_url('wilayah/kecamatan') ?>",
-                  data: {kabupaten: kabupaten},
-                  cache: false,
-                  success: function(msg){
-                    $("#kecamatan").html(msg);
-                  }
-              });
-            });
-
-            $("#kecamatan").change(function(){
-            var kecamatan = $("#kecamatan").val();
-              $.ajax({
-                type: 'POST',
-                  url: "get_kelurahan.php",
-                  data: {kecamatan: kecamatan},
-                  cache: false,
-                  success: function(msg){
-                    $("#kelurahan").html(msg);
-                  }
-              });
-            });
-         });
-  </script>
+      $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
     <!-- End custom js for this page -->
   </body>
 </html>
