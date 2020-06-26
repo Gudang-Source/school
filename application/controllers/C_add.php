@@ -13,6 +13,7 @@ class C_add extends CI_Controller
 			redirect(base_url("login"));
 		}
 		$this->load->model('M_insert');
+
 	}
 
 // profil sekolah
@@ -67,26 +68,31 @@ class C_add extends CI_Controller
 		$data["mulai"] = $this->input->post('mulai');
 		$data["selesai"] = $this->input->post('selesai');
 		$data["soal"] = $this->input->post('soal');
+		$data["soalimg"] = $this->soalimg();
 		$data["jawaba"] = $this->input->post('jawaba');
-		$data["jawabaimg"] = $this->input->post('jawabaimg');
+		$data["jawabaimg"] = $this->jwbaImage();
 		$data["jawabb"] = $this->input->post('jawabb');
-		$data["jawabbimg"] = $this->input->post('jawabbimg');
+		$data["jawabbimg"] = $this->jwbbImage();
 		$data["jawabc"] = $this->input->post('jawabc');
-		$data["jawabcimg"] = $this->input->post('jawabcimg');
+		$data["jawabcimg"] = $this->jwbcImage();
 		$data["jawabd"] = $this->input->post('jawabd');
-		$data["jawabdimg"] = $this->input->post('jawabdimg');
+		$data["jawabdimg"] = $this->jwbdImage();
 		$data["jawaban"] = $this->input->post('jawaban');
+		$data["idmapel"] = $this->input->post('mapel');
+		$data["pass"] = $this->input->post('pass');
 
 		$res = array(
 			'id_sek' => $id,
+			'id_mapel' => $data["idmapel"],
 			'mapel' => $data["mapel"],
+			'pass' => $data["pass"],
 			'kelas' => $data["kelas"],
 			'jurusan' => $data["jurusan"],
 			'tanggal' => $data["tgl"],
 			'mulai' => $data["mulai"],
 			'selesai' => $data["selesai"],
 			'soal' => $data["soal"],
-			'soalimg' => $this->soalimg(),
+			'soalimg' => $data["soalimg"],
 			'jawaba' => $data["jawaba"],
 			'jawabaimg' => $data["jawabaimg"],
 			'jawabb' => $data["jawabb"],
@@ -118,24 +124,141 @@ class C_add extends CI_Controller
         // return "logo.png";
     }
 
-    private function _uploadImage()
-{
-    $config['upload_path']          = 'asset/images/soal/';
-    $config['allowed_types']        = 'gif|jpg|png';
-    $config['file_name']            = $this->input->postI('soalimg');
-    $config['overwrite']			= true;
-    $config['max_size']             = 1024; // 1MB
-    // $config['max_width']            = 1024;
-    // $config['max_height']           = 768;
-
-    $this->load->library('upload', $config);
-
-    if ($this->upload->do_upload('image')) {
-        return $this->upload->data("file_name");
-    }
     
-    return "logo.png";
-}
+
+
+	public function jwbaImage()
+    {
+        // $id = $this->input->post('id_bimbel');
+        $foto = $_FILES['jawabaimg']['name'];
+        $tmp = $_FILES['jawabaimg']['tmp_name'];
+        $fotobaru = date('dmYHis') . $foto;
+
+        $path = "assets/images/soal/" . $fotobaru;
+
+        if (move_uploaded_file($tmp, $path)) {
+            $res = $fotobaru;
+            return $res;
+        }
+        return "logo.png";
+    }
+
+	public function jwbbImage()
+    {
+        // $id = $this->input->post('id_bimbel');
+        $foto = $_FILES['jawabbimg']['name'];
+        $tmp = $_FILES['jawabbimg']['tmp_name'];
+        $fotobaru = date('dmYHis') . $foto;
+
+        $path = "assets/images/soal/" . $fotobaru;
+
+        if (move_uploaded_file($tmp, $path)) {
+            $res = $fotobaru;
+            return $res;
+        }
+        return "logo.png";
+    }
+
+	public function jwbcImage()
+    {
+        // $id = $this->input->post('id_bimbel');
+        $foto = $_FILES['jawabcimg']['name'];
+        $tmp = $_FILES['jawabcimg']['tmp_name'];
+        $fotobaru = date('dmYHis') . $foto;
+
+        $path = "assets/images/soal/" . $fotobaru;
+
+        if (move_uploaded_file($tmp, $path)) {
+            $res = $fotobaru;
+            return $res;
+        }
+        return "logo.png";
+    }
+
+
+	public function jwbdImage()
+    {
+        // $id = $this->input->post('id_bimbel');
+        $foto = $_FILES['jawabdimg']['name'];
+        $tmp = $_FILES['jawabdimg']['tmp_name'];
+        $fotobaru = date('dmYHis') . $foto;
+
+        $path = "assets/images/soal/" . $fotobaru;
+
+        if (move_uploaded_file($tmp, $path)) {
+            $res = $fotobaru;
+            return $res;
+        }
+        return "logo.png";
+    }
+
+
+	public function lanjut()
+	{
+		$id = $this->session->userdata('id_sek');
+		$data["mapel"] = $this->input->post('mapel');
+		$data["kelas"] = $this->input->post('kelas');
+		$data["jurusan"] = $this->input->post('jurusan');
+		$data["tgl"] = $this->input->post('tgl');
+		$data["mulai"] = $this->input->post('mulai');
+		$data["selesai"] = $this->input->post('selesai');
+		$data["soal"] = $this->input->post('soal');
+		$data["jawaba"] = $this->input->post('jawaba');
+		$data["jawabaimg"] = $this->input->post('jawabaimg');
+		$data["jawabb"] = $this->input->post('jawabb');
+		$data["jawabbimg"] = $this->input->post('jawabbimg');
+		$data["jawabc"] = $this->input->post('jawabc');
+		$data["jawabcimg"] = $this->input->post('jawabcimg');
+		$data["jawabd"] = $this->input->post('jawabd');
+		$data["jawabdimg"] = $this->input->post('jawabdimg');
+		$data["jawaban"] = $this->input->post('jawaban');
+		$data["idmapel"] = $this->input->post('mapel');
+		$data["pass"] = $this->input->post('pass');
+
+		$res = array(
+			'id_sek' => $id,
+			'mapel' => $data["mapel"],
+			'kelas' => $data["kelas"],
+			'jurusan' => $data["jurusan"],
+			'tanggal' => $data["tgl"],
+			'mulai' => $data["mulai"],
+			'selesai' => $data["selesai"],
+			'soal' => $data["soal"],
+			'soalimg' => $this->uploadsoalimg(),
+			'jawaba' => $data["jawaba"],
+			'jawabaimg' => $data["jawabaimg"],
+			'jawabb' => $data["jawabb"],
+			'jawabbimg' => $data["jawabbimg"],
+			'jawabc' => $data["jawabc"],
+			'jawabcimg' => $data["jawabcimg"],
+			'jawabd' => $data["jawabd"],
+			'jawabdimg' => $data["jawabdimg"],
+			'jawaban' => $data["jawaban"]
+		);
+
+		$res = $this->M_insert->data("tmp_soal",$res);
+		redirect(base_url('soal/soal'));
+	}
+
+	 private function uploadsoalimg()
+	{
+	    $config['upload_path']          = 'asset/images/soal/';
+	    $config['allowed_types']        = 'gif|jpg|png';
+	    $config['file_name']            = $this->input->post('soalimg');
+	    $config['overwrite']			= true;
+	    $config['max_size']             = 1024; // 1MB
+	    // $config['max_width']            = 1024;
+	    // $config['max_height']           = 768;
+
+	    $this->load->library('upload', $config);
+
+	    if ($this->upload->do_upload('image')) {
+	        return $this->upload->data("file_name");
+	    }
+	    
+	    return "logo.png";
+	}
+
 // End Soal Ujian
 
 // Admin

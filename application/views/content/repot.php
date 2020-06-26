@@ -21,7 +21,7 @@
                 <a href="<?php echo base_url('admin/prin') ?>"><button class="btn btn-primary">Print</button></a>
               </div>
             </div>
-            <table class="table table-striped" >
+            <table class="table table-striped table-responsive" >
               <thead>
                 <tr>
                   <th> tanggal </th>

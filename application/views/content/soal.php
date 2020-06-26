@@ -57,13 +57,13 @@
                   <td>
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="<?php echo site_url('welcome/editadmin') ?>"><button type="button" class="btn btn-outline-success btn-sm">Edit</button></a>
+                            <a href="<?php echo site_url('soal/edit').$m["id"] ?>"><button type="button" class="btn btn-outline-success btn-sm">Edit</button></a>
                         </div>
                         <div class="col-sm-6">
                             <a href="<?php echo site_url('c_delet/soal/').$m["id"] ?>"><button type="button" class="btn btn-outline-danger btn-sm">Hapus</button></a>
                         </div>
                     </div>
-                </td>
+                  </td>
                 </tr>
                 <?php endforeach ?>
               </tbody>

@@ -13,7 +13,7 @@
       <div class="col-sm-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Tambah Soal</h4>
+            <h4 class="card-title">Edit Soal</h4>
             <form class="form-sample" action="<?php echo base_url('c_add/soal') ?>" enctype="multipart/form-data" method="POST">
               <div class="row">
                 <div class="col-sm-12">

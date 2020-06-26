@@ -79,9 +79,9 @@ class M_tampil extends CI_Model
         return $r;
     }
 
-    public function edit_siswa($idsek, $id)
+    public function admin_siswa($idsek)
     {
-        $res = $this->db->get_where('siswa', array('id_sek' => $idsek, 'id' => $id));
+        $res = $this->db->get_where('siswa', array('id_sek' => $idsek));
         return $res;
     }
 

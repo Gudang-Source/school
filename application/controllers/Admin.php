@@ -57,7 +57,7 @@ class Admin extends CI_Controller
 	{
 		$id = $this->session->userdata('id_sek');
 		$data = [
-			'anak' => $this->M_tampil->siswa($id)
+			'anak' => $this->M_tampil->admin_siswa($id)
 		];
 		$this->page("content/siswa", $data);
 	}

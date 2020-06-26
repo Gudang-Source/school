@@ -92,6 +92,15 @@ class Soal extends CI_Controller
         $this->selesai($na, $so);
 	}
 
+
+	public function edit($id)
+	{
+		$data = [
+			'edit' => $this->M_tampil->tampilsoal($id)
+		];
+		$this->page('content/edit_soal',$data)
+	}
+
 	public function selesai($na, $so)
 	{
 		$data = [

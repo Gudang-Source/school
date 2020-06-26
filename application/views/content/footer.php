@@ -24,12 +24,6 @@
     <script type="<?php echo base_url("assets/vendors/DataTables/datatables.min.js") ?>"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#dtBasicExample').DataTable();
-        $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
     <!-- End custom js for this page -->
   </body>
 </html>
